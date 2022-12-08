@@ -20,10 +20,15 @@ class Course < ApplicationRecord
       source: :student
 
     has_one :prerequisite,
+      class_name: :Course,
       # as an accessor to get to the prereq_id
       primary_key: :prereq_id,
 
       #the foreign key is to help us navigate to the row of the id
-      foreign_key: :id, 
-      class_name: :Course
+      foreign_key: :id
+    
+    belongs_to :instructor,
+      class_name: :User,
+      primary_key: :id,
+      foreign_key: :instructor_id
 end
