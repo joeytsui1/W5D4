@@ -19,5 +19,11 @@ class Course < ApplicationRecord
       through: :enrollments,
       source: :student
 
-    h
+    has_one :prerequisite,
+      # as an accessor to get to the prereq_id
+      primary_key: :prereq_id,
+
+      #the foreign key is to help us navigate to the row of the id
+      foreign_key: :id, 
+      class_name: :Course
 end
